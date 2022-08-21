@@ -47,17 +47,26 @@
     }
 }
 
-.save__controls {
-    position: absolute;
-    right: 10px;
+.savecontrols {
+    position: relative;
+    right: 40px;
     top: 10px;
     z-index: 4;
     font-size: 12px;
-    background-color: bisque;
+    background-color: rgb(165, 250, 17);
 }
 
-.save__controls button {
+/*.savecontrols button {
+    position: relative;
     margin-left: 5px;
     background-color: blue;
     border-radius: 100%;
+}*/
+
+.hide {
+    visibility: hidden;
+}
+
+.open {
+    visibility: visible;
 }

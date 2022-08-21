@@ -29,9 +29,7 @@ import './dnd.css';
 import React from 'react';
 import { useReactFlow } from 'react-flow-renderer';
 
-
 //import Controls from './Controls';
-
 
 const initialNodes: Node[] = [
   { id: '1', data: { label: 'Node 1' }, position: { x: 5, y: 5 } },
@@ -52,45 +50,6 @@ const fitViewOptions: FitViewOptions = {
 }
 
 
-/*
-function Flow() {
-  const [nodes, setNodes] = useState<Node[]>(initialNodes);
-  const [edges, setEdges] = useState<Edge[]>(initialEdges);
-
-  const onNodesChange = useCallback(
-    (changes: NodeChange[]) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    [setNodes]
-  );
-  const onEdgesChange = useCallback(
-    (changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    [setEdges]
-  );
-  const onConnect = useCallback(
-    (connection: Connection) => setEdges((eds) => addEdge(connection, eds)),
-    [setEdges]
-  );
-
-  return (
-    <div style={{ width: 1200, height: 800 }}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
-        fitViewOptions={fitViewOptions}
-      />
-    </div>
-  )
-}
-
-export default Flow;
-*/
-
-
-
-
 const onDragOver = (event: DragEvent) => {
   event.preventDefault();
   event.dataTransfer.dropEffect = 'move';
@@ -106,6 +65,7 @@ const getNodeId = () => `randomnode_${+new Date()}`;
 
 function Flow() {
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance>();
+
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
 
   const [edges, setEdges] = useState<Edge[]>(initialEdges);
@@ -143,11 +103,9 @@ function Flow() {
   //const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   //const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   //const onConnect = useCallback((params: Connection | Edge) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
-
-
   //Saverestore---------------
-  // Add
 
+  // Add
   const onAdd = useCallback(() => {
     const newNode = {
       id: `random_node-${getNodeId()}`,
@@ -157,15 +115,11 @@ function Flow() {
     setNodes((nds) => nds.concat(newNode));
   }, [setNodes]);
 
-  //-----------------
-
-
-
 
   return (
     <div className="dndflow">
       <ReactFlowProvider>
-        <div className="reactflow-wrapper" style={{ width: 980, height: 500 }}>
+        <div className="reactflow-wrapper" style={{ width: 1080, height: 500 }}>
           <ReactFlow
             nodes={nodes}
             edges={edges}
@@ -177,20 +131,10 @@ function Flow() {
             onDragOver={onDragOver}
           >
             <Controls />
-
           </ReactFlow>
         </div>
-
-
-
-
         <Sidebar />
-
-
       </ReactFlowProvider>
-      <div className='.save__controls'>
-        <button onClick={onAdd}>add node</button>
-      </div>
     </div>
   );
 
